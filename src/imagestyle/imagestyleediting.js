@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -16,7 +16,7 @@ import { normalizeImageStyles } from './utils';
  * The image style engine plugin. It sets the default configuration, creates converters and registers
  * {@link module:image/imagestyle/imagestylecommand~ImageStyleCommand ImageStyleCommand}.
  *
- * @extends module:core/plugin~Plugin
+ * @extends {module:core/plugin~Plugin}
  */
 export default class ImageStyleEditing extends Plugin {
 	/**

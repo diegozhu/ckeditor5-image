@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -35,13 +35,6 @@ export default class ImageEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'ImageEditing';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	init() {
 		const editor = this.editor;
 		const schema = editor.model.schema;
@@ -66,7 +59,11 @@ export default class ImageEditing extends Plugin {
 
 		conversion.for( 'editingDowncast' ).elementToElement( {
 			model: 'image',
-			view: ( modelElement, viewWriter ) => toImageWidget( createImageViewElement( viewWriter ), viewWriter, t( 'image widget' ) )
+			view: ( modelElement, viewWriter ) => toImageWidget(
+				createImageViewElement( viewWriter ),
+				viewWriter,
+				t( 'image widget' )
+			)
 		} );
 
 		conversion.for( 'downcast' )
@@ -82,8 +79,13 @@ export default class ImageEditing extends Plugin {
 						src: true
 					}
 				},
-				model: ( viewImage, modelWriter ) => modelWriter.createElement( 'image', { src: viewImage.getAttribute( 'src' ) } )
-			} )
+				model: ( viewImage, modelWriter ) => modelWriter.createElement(
+					'image',
+					{
+						src: viewImage.getAttribute( 'src' )
+					}
+				)
+			})
 			.attributeToAttribute( {
 				view: {
 					name: 'img',
@@ -129,7 +131,7 @@ export default class ImageEditing extends Plugin {
 // @returns {module:engine/view/containerelement~ContainerElement}
 export function createImageViewElement( writer ) {
 	const emptyElement = writer.createEmptyElement( 'img' );
-	const figure = writer.createContainerElement( 'figure', { class: 'image' } );
+	const figure = writer.createContainerElement( 'figure', { class: 'image'/*, draggable: 'true'*/ } );
 
 	writer.insert( writer.createPositionAt( figure, 0 ), emptyElement );
 

@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -7,13 +7,12 @@
  * @module image/imagestyle/utils
  */
 
-/* globals console */
+import log from '@ckeditor/ckeditor5-utils/src/log';
 
 import fullWidthIcon from '@ckeditor/ckeditor5-core/theme/icons/object-full-width.svg';
 import leftIcon from '@ckeditor/ckeditor5-core/theme/icons/object-left.svg';
 import centerIcon from '@ckeditor/ckeditor5-core/theme/icons/object-center.svg';
 import rightIcon from '@ckeditor/ckeditor5-core/theme/icons/object-right.svg';
-import { attachLinkToDocumentation } from '@ckeditor/ckeditor5-utils/src/ckeditorerror';
 
 /**
  * Default image styles provided by the plugin that can be referred in the
@@ -71,6 +70,22 @@ const defaultStyles = {
 		title: 'Right aligned image',
 		icon: rightIcon,
 		className: 'image-style-align-right'
+	},
+
+	// This style represents an inline image
+	absoluteImage: {
+		name: 'absoluteImage',
+		title: 'Absolute Image',
+		icon: rightIcon,
+		className: 'image-style-absolute'
+	},
+
+	// This style represents an inline image
+	inlineImage: {
+		name: 'inlineImage',
+		title: 'Inline Image',
+		icon: rightIcon,
+		className: 'image-style-inline'
 	}
 };
 
@@ -116,8 +131,8 @@ function _normalizeStyle( style ) {
 		}
 		// If it's just a name but none of the defaults, warn because probably it's a mistake.
 		else {
-			console.warn(
-				attachLinkToDocumentation( 'image-style-not-found: There is no such image style of given name.' ),
+			log.warn(
+				'image-style-not-found: There is no such image style of given name.',
 				{ name: styleName }
 			);
 
